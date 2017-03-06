@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
 import { InitSystemComponent } from './expenses/init-system/init-system.component';
+import { HeaderComponent } from './header/header.component';
 
 const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
@@ -17,7 +18,8 @@ const ROUTES: Routes = [
   declarations: [
     AppComponent,
     ExpensesComponent,
-    InitSystemComponent
+    InitSystemComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
