@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { ExpensesService, InitMessage } from './../expenses.service';
+import { InitSystemService, InitMessage } from './init-system.service';
 
 @Component({
   selector: 'app-init-system',
   templateUrl: './init-system.component.html',
   styleUrls: ['./init-system.component.css'],
-  providers: [ExpensesService]
+  providers: [InitSystemService]
 })
 export class InitSystemComponent implements OnInit {
 
@@ -17,11 +17,11 @@ export class InitSystemComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private expensesService: ExpensesService
+    private initSystemService: InitSystemService
   ) { }
 
   ngOnInit(): void {
-    this.expensesService.intializeCouchDb().subscribe(data => {
+    this.initSystemService.intializeCouchDb().subscribe(data => {
       if (data.success === true) {
         this.router.navigate(['/expenses']);
         this.systemInitialized = true;
