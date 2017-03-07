@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
 import { InitSystemComponent } from './expenses/init-system/init-system.component';
 import { HeaderComponent } from './header/header.component';
+import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 
 const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
-  { path: 'expenses', component: ExpensesComponent }
+  { path: 'expenses', component: ExpensesComponent },
+  { path: 'create-expense', component: CreateExpenseComponent },
 ]
 
 @NgModule({
@@ -19,7 +21,8 @@ const ROUTES: Routes = [
     AppComponent,
     ExpensesComponent,
     InitSystemComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateExpenseComponent
   ],
   imports: [
     BrowserModule,
