@@ -1,3 +1,19 @@
-<p>
-  Expenses works!
-</p>
+<div class="container">
+	<div class="row row-header">
+		<div class="col-sm-2">Date</div>
+		<div class="col-sm-2">Shop</div>
+		<div class="col-sm-2">Amount</div>
+		<div class="col-sm-4">Action</div>
+	</div>
+	<div *ngFor="let expense of expenses; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" class="row">
+		<div class="col-sm-2">{{expense.timestamp | date: 'dd-MM-yyyy'}}</div>
+		<!--<div class="col-sm-4"><a routerLink="details/{{expense._id}}">{{ship.name}}</a></div>-->
+		<div class="col-sm-2">{{expense.store}}</div>
+		<div class="col-sm-2">{{expense.amount}}</div>
+		<div class="col-sm-4">
+			<button class="btn btn-xs btn-danger"> <!--(click)="deleteShip(ship._id, ship._rev); $event.stopPropagation()">-->
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+		</div>
+	</div>
+</div>

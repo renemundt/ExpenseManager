@@ -1,11 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { ExpensesService } from './../expenses.service';
+import { Expense } from './../expense.models';
 
 @Component({
-  selector: 'app-expenses',
-  templateUrl: './expenses.component.html',
-  styleUrls: ['./expenses.component.css'],
+    selector: 'app-expenses',
+    templateUrl: './expenses.component.html',
+    styleUrls: ['./expenses.component.css'],
+    providers: [ ExpensesService]
 })
 export class ExpensesComponent implements OnInit {
 
-  ngOnInit() { }
+    private expenses: Expense[];
+
+    constructor(private expensesService: ExpensesService) { }
+
+    ngOnInit() {
+        this.getExpenses();
+    }
+
+    getExpenses() {
+        return this.expensesService.getExpenses()
+            .subscribe(
+            (expenses: Expense[]) => {
+                this.expenses = expenses;
+            },
+            err => {
+                console.error('em-error', err);
+            });
+    }
 }

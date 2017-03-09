@@ -9,7 +9,7 @@ import { ExpensesService } from '../expenses.service';
     selector: 'app-create-expense',
     templateUrl: './create-expense.component.html',
     styleUrls: ['./create-expense.component.css'],
-    providers: [ ExpensesService ]
+    providers: [ExpensesService]
 })
 export class CreateExpenseComponent implements OnInit {
 
@@ -49,12 +49,12 @@ export class CreateExpenseComponent implements OnInit {
     createExpense(expense: Expense): void {
         this.expensesService.createExpense(expense)
             .subscribe(
-                data => {
-                    this.router.navigate(['expenses']);
-                },
-                err => {
-                    console.error('em-error', err);
-                }
+            data => {
+                this.router.navigate(['expenses']);
+            },
+            err => {
+                console.error('em-error', err);
+            }
             );
     }
 }
