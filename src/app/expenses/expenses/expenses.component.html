@@ -9,12 +9,11 @@
 		<div class="col-xs-3 col-md-4">Action</div>
 	</div>
 	<div *ngFor="let expense of expenses; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" class="row">
-		<div class="col-xs-4 col-md-3">{{expense.timestamp | date: 'dd-MM-yyyy'}}</div>
-		<!--<div class="col-md-4"><a routerLink="details/{{expense._id}}">{{ship.name}}</a></div>-->
+		<div class="col-xs-4 col-md-3"><a routerLink="details/{{expense._id}}">{{expense.timestamp | date: 'dd-MM-yyyy'}}</a></div>
 		<div class="col-xs-3 col-md-3">{{expense.store}}</div>
 		<div class="col-xs-2 col-md-2">{{expense.amount}}</div>
 		<div class="col-xs-3 col-md-4">
-			<button class="btn btn-xs btn-danger"> <!--(click)="deleteShip(ship._id, ship._rev); $event.stopPropagation()">-->
+			<button class="btn btn-xs btn-danger" (click)="deleteShip(ship._id, ship._rev); $event.stopPropagation()">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         </button>
 		</div>
