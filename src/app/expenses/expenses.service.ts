@@ -33,10 +33,6 @@ export class ExpensesService {
         return this.http.post(SharedService.baseUrl, JSON.stringify(expense), { headers: SharedService.headers })
             .map((response: Response) => response);
     }
-
-    private mapExpense() {
-
-    }
 }
 
 export class RequestResult {

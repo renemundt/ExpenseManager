@@ -26,6 +26,7 @@ export class CreateExpenseComponent implements OnInit {
 
     private parseDateToStringWithFormat(date: Date): string {
         let result: string;
+        date = date instanceof Date ? date : new Date(date);
         let dd = date.getDate().toString();
         let mm = (date.getMonth() + 1).toString();
         dd = dd.length === 2 ? dd : '0' + dd;
@@ -43,6 +44,7 @@ export class CreateExpenseComponent implements OnInit {
     }
 
     public get dateTimeLocal(): string {
+        console.log('this.expense.timestamp', this.expense.timestamp)
         return this.parseDateToStringWithFormat(this.expense.timestamp);
     }
 
