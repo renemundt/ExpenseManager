@@ -9,11 +9,13 @@ import { ExpensesComponent } from './expenses/expenses/expenses.component';
 import { InitSystemComponent } from './expenses/init-system/init-system.component';
 import { HeaderComponent } from './header/header.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
+import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
 
 const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
-  { path: 'expenses', component: ExpensesComponent },
   { path: 'create-expense', component: CreateExpenseComponent },
+  { path: 'expenses', component: ExpensesComponent },
+  { path: 'expense-details/:id', component: ExpenseDetailsComponent }
 ]
 
 @NgModule({
@@ -22,7 +24,8 @@ const ROUTES: Routes = [
     ExpensesComponent,
     InitSystemComponent,
     HeaderComponent,
-    CreateExpenseComponent
+    CreateExpenseComponent,
+    ExpenseDetailsComponent
   ],
   imports: [
     BrowserModule,
