@@ -42,7 +42,6 @@ export class ExpenseDetailsComponent implements OnInit {
     }
 
     public get dateTimeLocal(): string {
-        console.log('this.expense.timestamp', this.expense.timestamp)
         return this.parseDateToStringWithFormat(this.expense.timestamp);
     }
 

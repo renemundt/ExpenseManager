@@ -24,7 +24,6 @@ export class ExpensesComponent implements OnInit {
         return this.expensesService.getExpenses()
             .subscribe(
             (expenses: Expense[]) => {
-                console.log('expenses', expenses)
                 this.expenses = expenses;
             },
             err => {
@@ -33,8 +32,6 @@ export class ExpensesComponent implements OnInit {
     }
 
     deleteExpense(id: string, rev: string) {
-        console.log('id', id);
-        console.log('rev', rev);
         this.expensesService.deleteExpense(id, rev).subscribe(
             () => this.getExpenses(),
             error => console.error('em-error', error));
