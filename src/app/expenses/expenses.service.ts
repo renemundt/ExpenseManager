@@ -29,6 +29,12 @@ export class ExpensesService {
             .map((response: Response) => response);
     }
 
+    updateExpense(expense: Expense): Observable<Response> {
+        const url = `${SharedService.baseUrl}/${expense._id}`;
+        return this.http.put(url, JSON.stringify(expense), { headers: SharedService.headers})
+            .map((response: Response) => response);
+    }
+
     deleteExpense(id: string, rev: string): Observable<void> {
         const url = `${SharedService.baseUrl}/${id}?rev=${rev}`;
         return this.http.delete(url, {headers: SharedService.headers }).map(() => null);

@@ -4,18 +4,18 @@
 	</div>
 	<div class="form-group">
 		<label>Amount:</label>
-		<input class="form-control" [(ngModel)]="expense.amount" placeholder="Amount of expense">
+		<input class="form-control" [disabled]="disableInput" [(ngModel)]="expense.amount" placeholder="Amount of expense">
 	</div>
 	<div class="form-group">
 		<label>Date:</label>
-		<input class="form-control" type="date" [(ngModel)]="dateTimeLocal" placeholder="Date when the purchase was done">
+		<input class="form-control" [disabled]="disableInput" type="date" [(ngModel)]="dateTimeLocal" placeholder="Date when the purchase was done">
 	</div>
 	<div class="form-group">
 		<label>Store:</label>
-		<input class="form-control" [(ngModel)]="expense.store" placeholder="Place the purchase was done">
+		<input class="form-control" [disabled]="disableInput" [(ngModel)]="expense.store" placeholder="Place the purchase was done">
 	</div>
 	<div>
 		<button *ngIf="disableInput" class="btn btn-info" (click)="edit()">Edit</button>
-		<button *ngIf="!disableInput" class="btn btn-danger" (click)="updateExpense(ship)">Save</button>
+		<button *ngIf="!disableInput" class="btn btn-danger" (click)="updateExpense(expense)">Save</button>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Expense } from '../expense.models';
 import { ExpensesService } from '../expenses.service';
@@ -15,7 +15,11 @@ export class ExpenseDetailsComponent implements OnInit {
     disableInput = true;
     @Input() expense: Expense;
 
-    constructor(private expensesService: ExpensesService, private activatedRoute: ActivatedRoute) { }
+    constructor(
+        private expensesService: ExpensesService,
+        private activatedRoute: ActivatedRoute,
+        private router: Router
+    ) { }
 
 
     private parseDateToStringWithFormat(date: Date): string {
@@ -59,4 +63,7 @@ export class ExpenseDetailsComponent implements OnInit {
         this.disableInput = false;
     }
 
+    updateExpense(expense: Expense){
+        this.expensesService.updateExpense(expense).subscribe(() => this.router.navigate(['/expenses']));
+    }
 }
