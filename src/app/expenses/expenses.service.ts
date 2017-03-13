@@ -20,18 +20,18 @@ export class ExpensesService {
 
     getExpense(id: string): Observable<Expense> {
         const url = `${SharedService.baseUrl}/${id}`;
-        console.log('url', url)
         return this.http.get(url)
             .map((response: Response) => response.json() as Expense);
-
     }
 
     createExpense(expense: Expense): Observable<Response> {
-        console.log('expense', expense)
-        let jason = JSON.stringify(expense);
-        console.log(jason);
         return this.http.post(SharedService.baseUrl, JSON.stringify(expense), { headers: SharedService.headers })
             .map((response: Response) => response);
+    }
+
+    deleteExpense(id: string, rev: string): Observable<void> {
+        const url = `${SharedService.baseUrl}/${id}?rev=${rev}`;
+        return this.http.delete(url, {headers: SharedService.headers }).map(() => null);
     }
 }
 
