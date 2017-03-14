@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { ExpensesService } from './../expenses.service';
 import { Expense } from './../expense.models';
 
+import { ConfirmEvent } from '../../shared/confirm/confirm.models';
+
 @Component({
     selector: 'app-expenses',
     templateUrl: './expenses.component.html',
@@ -35,5 +37,9 @@ export class ExpensesComponent implements OnInit {
         this.expensesService.deleteExpense(id, rev).subscribe(
             () => this.getExpenses(),
             error => console.error('em-error', error));
+    }
+
+    onConfirmed(confirmEvent: ConfirmEvent) {
+        this.deleteExpense(confirmEvent.id, confirmEvent.rev);
     }
 }

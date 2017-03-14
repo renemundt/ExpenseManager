@@ -10,6 +10,7 @@ import { InitSystemComponent } from './expenses/init-system/init-system.componen
 import { HeaderComponent } from './header/header.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
+import { ConfirmComponent } from './shared/confirm/confirm.component';
 
 const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
@@ -25,7 +26,8 @@ const ROUTES: Routes = [
     InitSystemComponent,
     HeaderComponent,
     CreateExpenseComponent,
-    ExpenseDetailsComponent
+    ExpenseDetailsComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

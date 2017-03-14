@@ -13,9 +13,10 @@
         <div class="col-xs-3 col-md-3">{{expense.store}}</div>
         <div class="col-xs-2 col-md-2">{{expense.amount}}</div>
         <div class="col-xs-3 col-md-4">
-            <button class="btn btn-xs btn-danger" (click)="deleteExpense(expense._id, expense._rev); $event.stopPropagation()">
+        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         </button>
+        <app-confirm [id]="expense._id" [rev]="expense._rev" (onConfirmed)="onConfirmed($event)"></app-confirm>
         </div>
     </div>
 </div>
