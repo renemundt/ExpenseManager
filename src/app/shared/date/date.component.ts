@@ -9,6 +9,7 @@ export class DateComponent implements OnInit {
 
     @Input() date: Date;
     @Input() placeholder: string;
+    @Input() disabled: boolean;
 
     constructor() { }
 

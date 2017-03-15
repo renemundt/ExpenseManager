@@ -8,7 +8,7 @@
 	</div>
 	<div class="form-group">
 		<label>Date:</label>
-		<app-date [date]="expense.timestamp" [placeholder]="'Date when the purchase was done'"></app-date>
+		<app-date [date]="expense.timestamp" [disabled]="disableInput" [placeholder]="'Date when the purchase was done'"></app-date>
 	</div>
 	<div class="form-group">
 		<label>Store:</label>
