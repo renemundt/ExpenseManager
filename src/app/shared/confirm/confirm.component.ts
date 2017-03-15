@@ -3,23 +3,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ConfirmEvent } from './confirm.models';
 
 @Component({
-  selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css']
+    selector: 'app-confirm',
+    templateUrl: './confirm.component.html',
+    styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() rev: string;
-  @Output() onConfirmed = new EventEmitter<ConfirmEvent>();
+    @Input() dialogId: string;
+    @Output() onConfirmed = new EventEmitter();
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  onYes() {
-    this.onConfirmed.emit(new ConfirmEvent(this.id, this.rev));
-  }
+    onYes() {
+        this.onConfirmed.emit('emit');
+    }
 
 }
