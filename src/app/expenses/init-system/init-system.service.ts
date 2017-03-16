@@ -4,21 +4,18 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { SharedService } from '../../shared/shared.service';
+
 @Injectable()
 export class InitSystemService {
 
-  private url = 'http://localhost:5984/';
-  private databaseName = 'expensemanager';
-  private baseUrl = `${this.url}${this.databaseName}`;
   private initMessage = new InitMessage();
-
-  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
   public intializeCouchDb(): Observable<InitMessage> {
     return Observable.create(observer => {
-      this.http.put(this.baseUrl, JSON.stringify(this.databaseName), { headers: this.headers })
+      this.http.put(SharedService.url, JSON.stringify(SharedService.databaseName), { headers: SharedService.headers })
         .map((response: Response) => response.json())
         .subscribe(result => {
             this.initMessage.message = 'System was initialized';

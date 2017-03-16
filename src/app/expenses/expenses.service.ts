@@ -13,30 +13,30 @@ export class ExpensesService {
     constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
-        const url = `${SharedService.baseUrl}/_all_docs?include_docs=true`;
+        const url = `${SharedService.url}/_all_docs?include_docs=true`;
         return this.http.get(url)
             .map((response: Response) =>  response.json().rows.map(x => x.doc as Expense));
     }
 
     getExpense(id: string): Observable<Expense> {
-        const url = `${SharedService.baseUrl}/${id}`;
+        const url = `${SharedService.url}/${id}`;
         return this.http.get(url)
             .map((response: Response) => response.json() as Expense);
     }
 
     createExpense(expense: Expense): Observable<Response> {
-        return this.http.post(SharedService.baseUrl, JSON.stringify(expense), { headers: SharedService.headers })
+        return this.http.post(SharedService.url, JSON.stringify(expense), { headers: SharedService.headers })
             .map((response: Response) => response);
     }
 
     updateExpense(expense: Expense): Observable<Response> {
-        const url = `${SharedService.baseUrl}/${expense._id}`;
+        const url = `${SharedService.url}/${expense._id}`;
         return this.http.put(url, JSON.stringify(expense), { headers: SharedService.headers})
             .map((response: Response) => response);
     }
 
     deleteExpense(id: string, rev: string): Observable<void> {
-        const url = `${SharedService.baseUrl}/${id}?rev=${rev}`;
+        const url = `${SharedService.url}/${id}?rev=${rev}`;
         return this.http.delete(url, {headers: SharedService.headers }).map(() => null);
     }
 }
