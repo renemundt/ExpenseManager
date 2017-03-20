@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,7 +37,7 @@ const ROUTES: Routes = [
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: false }),
   ],
-  providers: [],
+  providers: [ {provide: LOCALE_ID, useValue: 'da-DK'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
