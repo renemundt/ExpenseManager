@@ -2,7 +2,7 @@
 	<div class="page-header">
 		<h1>Create expense</h1>
 	</div>
-	<form (ngSubmit)="onSubmit()"  #expenseForm="ngForm">
+	<form (ngSubmit)="onSubmit()" #expenseForm="ngForm">
 		<div class="form-group">
 			<label>Amount:</label>
 			<input class="form-control" type="number" [(ngModel)]="expense.amount" #amount="ngModel" name="amount" placeholder="Amount of expense" required>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div>
-			<button class="btn btn-primary" [disabled]="!expenseForm.form.valid">Save</button>
+			<button type="submit" class="btn btn-primary" [disabled]="!expenseForm.form.valid">Save</button>
 		</div>
 	</form>
 </div>

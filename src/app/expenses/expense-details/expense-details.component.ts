@@ -38,7 +38,8 @@ export class ExpenseDetailsComponent implements OnInit {
         this.disableInput = false;
     }
 
-    updateExpense(expense: Expense){
-        this.expensesService.updateExpense(expense).subscribe(() => this.router.navigate(['/expenses']));
+    onSubmit() {
+        this.expensesService.updateExpense(this.expense)
+            .subscribe(() => this.router.navigate(['/expenses']));
     }
 }
