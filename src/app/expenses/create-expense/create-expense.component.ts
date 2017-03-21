@@ -22,8 +22,8 @@ export class CreateExpenseComponent implements OnInit {
         this.expense.timestamp = new Date(now.getTime());
     }
 
-    createExpense(expense: Expense): void {
-        this.expensesService.createExpense(expense)
+    onSubmit(): void {
+        this.expensesService.createExpense(this.expense)
             .subscribe(
             data => {
                 this.router.navigate(['expenses']);
