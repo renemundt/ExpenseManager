@@ -12,6 +12,7 @@ import { CreateExpenseComponent } from './expenses/create-expense/create-expense
 import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
 import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { DateComponent } from './shared/date/date.component';
+import { BarometerComponent } from './expenses/barometer/barometer.component';
 
 const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
@@ -29,7 +30,8 @@ const ROUTES: Routes = [
     CreateExpenseComponent,
     ExpenseDetailsComponent,
     ConfirmComponent,
-    DateComponent
+    DateComponent,
+    BarometerComponent
   ],
   imports: [
     BrowserModule,
