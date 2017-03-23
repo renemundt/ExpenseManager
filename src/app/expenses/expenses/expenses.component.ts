@@ -26,7 +26,7 @@ export class ExpensesComponent implements OnInit {
         return this.expensesService.getExpenses()
             .subscribe(
             (expenses: Expense[]) => {
-                this.expenses = expenses;
+                this.expenses = this.sortExpenses(expenses);
             },
             err => {
                 console.error('em-error', err);
@@ -41,5 +41,15 @@ export class ExpensesComponent implements OnInit {
 
     onConfirmed(confirmEvent: ConfirmEvent) {
         this.deleteExpense(confirmEvent.id, confirmEvent.rev);
+    }
+
+    private sortExpenses(expenses: Expense[]): Expense[] {
+
+        return expenses.sort(function(a, b) {
+            a.timestamp = new Date(a.timestamp);
+            b.timestamp = new Date(b.timestamp);
+            return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
+        });
+
     }
 }
