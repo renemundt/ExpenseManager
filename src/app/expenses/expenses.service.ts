@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { Expense } from './expense.models';
-import { SharedService } from './../shared/shared.service';
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class ExpensesService {
@@ -13,31 +13,31 @@ export class ExpensesService {
     constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
-        const url = `${SharedService.url}/_all_docs?include_docs=true`;
+        const url = `${environment.url}/_all_docs?include_docs=true`;
         return this.http.get(url)
             .map((response: Response) =>  response.json().rows.map(x => x.doc as Expense));
     }
 
     getExpense(id: string): Observable<Expense> {
-        const url = `${SharedService.url}/${id}`;
+        const url = `${environment.url}/${id}`;
         return this.http.get(url)
             .map((response: Response) => response.json() as Expense);
     }
 
     createExpense(expense: Expense): Observable<Response> {
-        return this.http.post(SharedService.url, JSON.stringify(expense), { headers: SharedService.headers })
+        return this.http.post(environment.url, JSON.stringify(expense), { headers: environment.headers })
             .map((response: Response) => response);
     }
 
     updateExpense(expense: Expense): Observable<Response> {
-        const url = `${SharedService.url}/${expense._id}`;
-        return this.http.put(url, JSON.stringify(expense), { headers: SharedService.headers})
+        const url = `${environment.url}/${expense._id}`;
+        return this.http.put(url, JSON.stringify(expense), { headers: environment.headers})
             .map((response: Response) => response);
     }
 
     deleteExpense(id: string, rev: string): Observable<void> {
-        const url = `${SharedService.url}/${id}?rev=${rev}`;
-        return this.http.delete(url, {headers: SharedService.headers }).map(() => null);
+        const url = `${environment.url}/${id}?rev=${rev}`;
+        return this.http.delete(url, {headers: environment.headers }).map(() => null);
     }
 }
 
