@@ -18,7 +18,8 @@ const ROUTES: Routes = [
   { path: '', component: InitSystemComponent },
   { path: 'create-expense', component: CreateExpenseComponent },
   { path: 'expenses', component: ExpensesComponent },
-  { path: 'expense-details/:id', component: ExpenseDetailsComponent }
+  { path: 'expense-details/:id', component: ExpenseDetailsComponent },
+  { path: 'barometer', component: BarometerComponent }
 ]
 
 @NgModule({
