@@ -3,6 +3,7 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
@@ -11,7 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
 import { ConfirmComponent } from './shared/confirm/confirm.component';
-import { DateComponent } from './shared/date/date.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 
 const ROUTES: Routes = [
@@ -31,7 +31,6 @@ const ROUTES: Routes = [
     CreateExpenseComponent,
     ExpenseDetailsComponent,
     ConfirmComponent,
-    DateComponent,
     BarometerComponent
   ],
   imports: [
@@ -39,6 +38,7 @@ const ROUTES: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: false }),
+    DateValueAccessorModule
   ],
   providers: [ {provide: LOCALE_ID, useValue: 'da-DK'} ],
   bootstrap: [AppComponent]

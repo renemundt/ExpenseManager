@@ -12,7 +12,7 @@
 		</div>
 		<div class="form-group">
 			<label>Date:</label>
-			<app-date [date]="expense.timestamp" [disabled]="disableInput" [placeholder]="'Date when the purchase was done'"></app-date>
+			<input class="form-control" type="date" [disabled]="disableInput" name="timestamp" [(ngModel)]="expense.timestamp" useValueAsDate required>
 		</div>
 		<div class="form-group">
 			<label>Store:</label>
