@@ -33,24 +33,33 @@ export class BarometerComponent implements OnInit {
     }
 
     mapReduce(expenses: Expense[]): BarometerExpense[] {
-
+        let monthToDayAmountCnt = 0;
         const result = expenses.reduce(function (res, currentValue) {
             const tempDate = moment(currentValue.timestamp).format('YYYY-MM-DD')
             if (res.indexOf(tempDate) === -1) {
                 res.push(tempDate);
             }
             return res;
-        }, []).map(function (timestamp) {
+        }, []).map(function (timestamp, index) {
+            const tAmount = this.getTotalAmountPerDay(expenses, timestamp)
+            monthToDayAmountCnt += tAmount;
             return {
                 timestamp: moment(timestamp).toDate(),
-                totalAmount: expenses.filter(function (expense) {
-                    return moment(expense.timestamp).format('YYYY-MM-DD') === timestamp;
-                }).map(function (expense) { return expense.amount; })
-                    .reduce((previous: number, current): number => {
-                        return previous + current;
-                    })
+                totalAmount: tAmount,
+                monthToDayAmount: monthToDayAmountCnt,
+                average: monthToDayAmountCnt / moment(timestamp).toDate().getDate()
             };
-        });
+        }, this);
+        return result;
+    }
+
+    private getTotalAmountPerDay(expenses: Expense[], timestamp: string): number {
+        const result = expenses.filter(function (expense) {
+            return moment(expense.timestamp).format('YYYY-MM-DD') === timestamp;
+        }).map(function (expense) { return expense.amount; })
+            .reduce((previous: number, current): number => {
+                return previous + current;
+            })
         return result;
     }
 }
