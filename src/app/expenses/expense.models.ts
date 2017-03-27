@@ -5,3 +5,8 @@ export class Expense {
     public timestamp: Date;
     public store: string;
 }
+
+export class BarometerExpense {
+    public totalAmount: number;
+    public timestamp: Date;
+}
