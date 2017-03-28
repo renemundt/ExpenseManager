@@ -46,8 +46,6 @@ export class BarometerComponent implements OnInit {
         }, []).map(function (timestamp, index) {
             const tAmount = this.getTotalAmountPerDay(expenses, timestamp)
             monthToDayAmountCnt += tAmount;
-            console.log('monthToDayAmountCnt', monthToDayAmountCnt)
-            console.log('timestamp', timestamp)
             return {
                 timestamp: moment(timestamp).toDate(),
                 totalAmount: tAmount,
