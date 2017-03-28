@@ -24,12 +24,10 @@ export class ExpensesComponent implements OnInit {
 
     getExpenses() {
         return this.expensesService.getExpenses()
-            .subscribe(
-            (expenses: Expense[]) => {
+            .subscribe((expenses: Expense[]) => {
                 this.expenses = this.sortExpenses(expenses);
             },
-            err => {
-                console.error('em-error', err);
+            error => { console.error('em-error', error);
             });
     }
 
@@ -44,12 +42,10 @@ export class ExpensesComponent implements OnInit {
     }
 
     private sortExpenses(expenses: Expense[]): Expense[] {
-
         return expenses.sort(function(a, b) {
             a.timestamp = new Date(a.timestamp);
             b.timestamp = new Date(b.timestamp);
             return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
         });
-
     }
 }

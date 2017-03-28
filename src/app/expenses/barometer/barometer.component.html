@@ -8,7 +8,7 @@
         <div class="col-xs-3 col-md-2"><div class="pull-right">Month to day amount</div></div>
         <div class="col-xs-3 col-md-2"><div class="pull-right">Average</div></div>
     </div>
-    <div *ngFor="let expense of expenses; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" class="row">
+    <div *ngFor="let expense of barometerExpenses; let i = index; let even = even; let odd = odd" [ngClass]="{ odd: odd, even: even }" class="row">
         <!--<div class="col-xs-3 col-md-4">{{expense.timestamp }}</div>-->
         <div class="col-xs-3 col-md-4">{{expense.timestamp | date: 'longDate'}}</div>
         <div class="col-xs-3 col-md-2"><div class="pull-right">{{expense.totalAmount | currency:'DKK':true}}</div></div>

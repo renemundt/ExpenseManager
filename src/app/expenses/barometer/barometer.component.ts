@@ -14,7 +14,8 @@ import { Expense, BarometerExpense } from '../expense.models'
 })
 export class BarometerComponent implements OnInit {
 
-    expenses: BarometerExpense[] = []
+    expenses: Expense[] = []
+    barometerExpenses: BarometerExpense[] = []
 
     constructor(private expenseService: ExpensesService) { }
 
@@ -25,7 +26,9 @@ export class BarometerComponent implements OnInit {
     getExpenses() {
         this.expenseService.getExpenses()
             .subscribe(expenses => {
-                this.expenses = this.mapReduce(expenses)
+                let sortedExpenses: Expense[] = this.sortExpenses(expenses)
+                const barometerExpenses = this.mapReduce(sortedExpenses)
+                this.barometerExpenses = this.sortBarometerExpenses(barometerExpenses)
             },
             error => {
                 console.error('em-error', error)
@@ -43,6 +46,8 @@ export class BarometerComponent implements OnInit {
         }, []).map(function (timestamp, index) {
             const tAmount = this.getTotalAmountPerDay(expenses, timestamp)
             monthToDayAmountCnt += tAmount;
+            console.log('monthToDayAmountCnt', monthToDayAmountCnt)
+            console.log('timestamp', timestamp)
             return {
                 timestamp: moment(timestamp).toDate(),
                 totalAmount: tAmount,
@@ -62,4 +67,22 @@ export class BarometerComponent implements OnInit {
             })
         return result;
     }
+
+    private sortExpenses(expenses: Expense[]): Expense[] {
+        return expenses.sort(function (a, b) {
+            a.timestamp = new Date(a.timestamp);
+            b.timestamp = new Date(b.timestamp);
+            return a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0;
+        });
+    }
+
+    private sortBarometerExpenses(expenses: BarometerExpense[]): BarometerExpense[] {
+        return expenses.sort(function (a, b) {
+            a.timestamp = new Date(a.timestamp);
+            b.timestamp = new Date(b.timestamp);
+            return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
+        });
+    }
+
+
 }
