@@ -5,6 +5,8 @@ import * as moment from 'moment'
 import { ExpensesService } from '../expenses.service'
 import { Expense, BarometerExpense } from '../expense.models'
 
+import { environment } from '../../../environments/environment'
+
 
 @Component({
     selector: 'app-barometer',
@@ -16,6 +18,8 @@ export class BarometerComponent implements OnInit {
 
     expenses: Expense[] = []
     barometerExpenses: BarometerExpense[] = []
+    latestAverage: number
+    temperature: string
 
     constructor(private expenseService: ExpensesService) { }
 
@@ -29,6 +33,9 @@ export class BarometerComponent implements OnInit {
                 let sortedExpenses: Expense[] = this.sortExpenses(expenses)
                 const barometerExpenses = this.mapReduce(sortedExpenses)
                 this.barometerExpenses = this.sortBarometerExpenses(barometerExpenses)
+                this.latestAverage = this.sortBarometerExpenses(barometerExpenses)[0].average
+                this.temperature = this.getTemperature()
+                console.log('temperature', this.temperature)
             },
             error => {
                 console.error('em-error', error)
@@ -36,7 +43,7 @@ export class BarometerComponent implements OnInit {
     }
 
     mapReduce(expenses: Expense[]): BarometerExpense[] {
-        let monthToDayAmountCnt = 0;
+        let monthToDayAmountCnt = 0
         const result = expenses.reduce(function (res, currentValue) {
             const tempDate = moment(currentValue.timestamp).format('YYYY-MM-DD')
             if (res.indexOf(tempDate) === -1) {
@@ -45,12 +52,12 @@ export class BarometerComponent implements OnInit {
             return res;
         }, []).map(function (timestamp, index) {
             const tAmount = this.getTotalAmountPerDay(expenses, timestamp)
-            monthToDayAmountCnt += tAmount;
+            monthToDayAmountCnt += tAmount
             return {
                 timestamp: moment(timestamp).toDate(),
                 totalAmount: tAmount,
                 monthToDayAmount: monthToDayAmountCnt,
-                average: monthToDayAmountCnt / moment(timestamp).toDate().getDate()
+                average: monthToDayAmountCnt / ( moment(timestamp).toDate().getDate() - 12)
             };
         }, this);
         return result;
@@ -82,5 +89,14 @@ export class BarometerComponent implements OnInit {
         });
     }
 
+    private getTemperature(): Temperature {
+        if( this.latestAverage < environment.thresholdLower) {return 'NORMAL'}
+        if( this.latestAverage > environment.thresholdLower && this.latestAverage < environment.thresholdLimit) {return 'MIDDLE'}
+        if( this.latestAverage > environment.thresholdLimit) {return 'HIGH'}
+
+        return 'UNKNOWN'
+    }
 
 }
+
+type Temperature = 'HIGH' | 'MIDDLE' | 'NORMAL' | 'UNKNOWN'
