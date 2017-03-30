@@ -1,5 +1,17 @@
 <div class="container-fluid">
     <div class="page-header">
+        <div *ngIf="temperature=='NORMAL'" class="alert alert-succes" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <strong>Well done!</strong> Money in the bank
+        </div>
+        <div *ngIf="temperature=='MIDDLE'" class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <strong>Warning!</strong> You are on the right track
+        </div>
+        <div *ngIf="temperature=='HIGH'" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <strong>Oh snap!</strong> Money is going down the drain
+        </div>
         <h1>Barometer</h1>
     </div>
     <div class="row row-header">

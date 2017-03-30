@@ -1,15 +1,13 @@
-.row-header{
+.row-header {
     font-weight: bold;
     color: #000;
     padding-bottom: 5px;
 }
-
 .odd {
     background-color: #fff;
     padding: 5px 0 5px 0;
 }
-.even{
+.even {
     background-color: #ccc;
-    padding: 5px 0 5px 0;
-    
+    padding: 5px 0 5px 0;   
 }
