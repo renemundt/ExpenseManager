@@ -35,7 +35,6 @@ export class BarometerComponent implements OnInit {
                 this.barometerExpenses = this.sortBarometerExpenses(barometerExpenses)
                 this.latestAverage = this.sortBarometerExpenses(barometerExpenses)[0].average
                 this.temperature = this.getTemperature()
-                console.log('temperature', this.temperature)
             },
             error => {
                 console.error('em-error', error)

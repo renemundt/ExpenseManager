@@ -7,13 +7,25 @@ import 'rxjs/add/operator/map';
 import { Expense } from './expense.models';
 import { environment } from '../../environments/environment'
 
+import * as moment from 'moment'
+
 @Injectable()
 export class ExpensesService {
 
     constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
-        const url = `${environment.url}/_all_docs?include_docs=true`;
+
+
+        let date = new Date()
+        let currentMonth = (date.getMonth() + 1).toString().length === 1 ? '0' + (date.getMonth() + 1) : '' + (date.getMonth() + 1)
+        let currentYear = date.getFullYear()
+
+        let startKey = `"${moment().format('YYYY')}-${moment().format('MM')}-01T00:00:00Z"`
+        let endKey = `"${moment().format('YYYY')}-${moment().format('MM')}-${moment().daysInMonth()}T00:00:00Z"`
+
+        const url = `${environment.url}/_design/timestamp/_view/expenses-view?startkey=${startKey}&endkey=${endKey}&include_docs=true`;
+        
         return this.http.get(url)
             .map((response: Response) =>  response.json().rows.map(x => x.doc as Expense));
     }
