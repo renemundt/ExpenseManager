@@ -15,7 +15,8 @@ import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 
 const ROUTES: Routes = [
-  { path: '', component: InitSystemComponent },
+  // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
+  { path: '', redirectTo: 'barometer', pathMatch: 'full' },
   { path: 'create-expense', component: CreateExpenseComponent },
   { path: 'expenses', component: ExpensesComponent },
   { path: 'expense-details/:id', component: ExpenseDetailsComponent },
