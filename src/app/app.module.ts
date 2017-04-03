@@ -37,7 +37,7 @@ const ROUTES: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: false }),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
     DateValueAccessorModule
   ],
   providers: [ {provide: LOCALE_ID, useValue: 'da-DK'} ],
