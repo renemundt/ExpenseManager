@@ -19,7 +19,6 @@ export class BarometerComponent implements OnInit {
     expenses: Expense[] = []
     barometerExpenses: BarometerExpense[] = []
     latestAverage: number
-    temperature: string
 
     constructor(private expenseService: ExpensesService) { }
 
@@ -34,7 +33,6 @@ export class BarometerComponent implements OnInit {
                 const barometerExpenses = this.mapReduce(sortedExpenses)
                 this.barometerExpenses = this.sortBarometerExpenses(barometerExpenses)
                 this.latestAverage = this.sortBarometerExpenses(barometerExpenses)[0].average
-                this.temperature = this.getTemperature()
             },
             error => {
                 console.error('em-error', error)
@@ -87,15 +85,4 @@ export class BarometerComponent implements OnInit {
             return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
         });
     }
-
-    private getTemperature(): Temperature {
-        if( this.latestAverage < environment.thresholdLower) {return 'NORMAL'}
-        if( this.latestAverage > environment.thresholdLower && this.latestAverage < environment.thresholdLimit) {return 'MIDDLE'}
-        if( this.latestAverage > environment.thresholdLimit) {return 'HIGH'}
-
-        return 'UNKNOWN'
-    }
-
 }
-
-type Temperature = 'HIGH' | 'MIDDLE' | 'NORMAL' | 'UNKNOWN'
