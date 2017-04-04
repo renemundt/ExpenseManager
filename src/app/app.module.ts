@@ -13,6 +13,7 @@ import { CreateExpenseComponent } from './expenses/create-expense/create-expense
 import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
 import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
+import { IndicatorComponent } from './expenses/indicator/indicator.component';
 
 const ROUTES: Routes = [
   // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
@@ -32,7 +33,8 @@ const ROUTES: Routes = [
     CreateExpenseComponent,
     ExpenseDetailsComponent,
     ConfirmComponent,
-    BarometerComponent
+    BarometerComponent,
+    IndicatorComponent
   ],
   imports: [
     BrowserModule,

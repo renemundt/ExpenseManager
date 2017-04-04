@@ -1,22 +1,20 @@
 <header>
-  <nav class="navbar navbar-default navbar-staic-top">
+  <nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar"
-          aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" routerLink="expenses">Expense Manager</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <app-indicator></app-indicator>
       </div>
 
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav">
           <li routerLinkActive="active"><a routerLink="expenses"><i class="fa fa-money fa-2x"></i> Expenses</a></li>
-          <li routerLinkActive="active"><a routerLink="barometer"><i class="fa fa-thermometer fa-2x"></i> Barometer</a></li>
           <li routerLinkActive="active"><a routerLink="create-expense"><i class="fa fa-plus-square-o fa-2x"></i> Create</a></li>
         </ul>
       </div>

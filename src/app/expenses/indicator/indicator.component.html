@@ -1,0 +1,14 @@
+<div *ngIf="temperature=='NORMAL'">
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer fa-2x"></i><strong> All is well</strong></a>
+</div>
+<div *ngIf="temperature=='MIDDLE'">
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer fa-2x"></i><strong> Watch out</strong></a>
+</div>
+<div *ngIf="temperature=='HIGH'">
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer fa-2x"></i><strong> Alert alert</strong></a>
+</div>
+
+
+
+
+<!--<div *ngIf="temperature=='NORMAL'" class="alert alert-success" role="alert">-->
