@@ -28,7 +28,7 @@ export class IndicatorComponent implements OnInit {
                 .reduce((previous: number, current: number): number => {
                     return previous + current;
                 })
-            this.average = total / +moment().format('DD')
+            this.average = total / +moment().toDate().getDate()
             if (this.average < environment.thresholdLower) { this.temperature = 'NORMAL'}
             if (this.average > environment.thresholdLower && this.average < environment.thresholdLimit) { this.temperature = 'MIDDLE'}
             if (this.average > environment.thresholdLimit) { this.temperature = 'HIGH'}
