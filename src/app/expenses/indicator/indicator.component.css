@@ -1,0 +1,19 @@
+.fa-thermometer-empty{
+    color: green
+}
+
+.fa-thermometer-half, .fa-thermometer-full{
+    color: red
+}
+
+strong {
+    font-size: 25px
+}
+
+.fa-2x + strong {
+    color: red
+}
+
+.fa-thermometer-empty + strong {
+    color: green
+}
