@@ -14,6 +14,7 @@ import { ExpenseDetailsComponent } from './expenses/expense-details/expense-deta
 import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 import { IndicatorComponent } from './expenses/indicator/indicator.component';
+import { TemperatureService } from './shared/temperature.service'
 
 const ROUTES: Routes = [
   // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
@@ -43,7 +44,7 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES, { useHash: true }),
     DateValueAccessorModule
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'da-DK'} ],
+  providers: [ {provide: LOCALE_ID, useValue: 'da-DK'}, TemperatureService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
