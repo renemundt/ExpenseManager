@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
 
-import { ExpensesService } from './../expenses.service';
-import { Expense } from './../expense.models';
+import { ExpensesService } from './../expenses.service'
+import { Expense } from './../expense.models'
+import { TemperatureService } from '../../shared/temperature.service'
 
-import { ConfirmEvent } from '../../shared/confirm/confirm.models';
+import { ConfirmEvent } from '../../shared/confirm/confirm.models'
 
 @Component({
     selector: 'app-expenses',
@@ -14,38 +15,44 @@ import { ConfirmEvent } from '../../shared/confirm/confirm.models';
 })
 export class ExpensesComponent implements OnInit {
 
-    private expenses: Expense[];
+    private expenses: Expense[]
 
-    constructor(private expensesService: ExpensesService) { }
+    constructor(
+        private expensesService: ExpensesService,
+        private temperatureService: TemperatureService
+    ) { }
 
     ngOnInit() {
-        this.getExpenses();
+        this.getExpenses()
     }
 
     getExpenses() {
         return this.expensesService.getExpenses()
             .subscribe((expenses: Expense[]) => {
-                this.expenses = this.sortExpenses(expenses);
+                this.expenses = this.sortExpenses(expenses)
             },
-            error => { console.error('em-error', error);
-            });
+            error => { console.error('em-error', error)
+            })
     }
 
     deleteExpense(id: string, rev: string) {
         this.expensesService.deleteExpense(id, rev).subscribe(
-            () => this.getExpenses(),
-            error => console.error('em-error', error));
+            () => {
+                this.temperatureService.touchExpenses()
+                this.getExpenses()
+            },
+            error => console.error('em-error', error))
     }
 
     onConfirmed(confirmEvent: ConfirmEvent) {
-        this.deleteExpense(confirmEvent.id, confirmEvent.rev);
+        this.deleteExpense(confirmEvent.id, confirmEvent.rev)
     }
 
     private sortExpenses(expenses: Expense[]): Expense[] {
         return expenses.sort(function(a, b) {
-            a.timestamp = new Date(a.timestamp);
-            b.timestamp = new Date(b.timestamp);
-            return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
-        });
+            a.timestamp = new Date(a.timestamp)
+            b.timestamp = new Date(b.timestamp)
+            return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0
+        })
     }
 }
