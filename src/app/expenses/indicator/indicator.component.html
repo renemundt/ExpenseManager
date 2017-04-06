@@ -1,9 +1,9 @@
 <div *ngIf="temperature=='NORMAL'">
-    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-empty fa-2x"></i><strong> {{average}}</strong></a>
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-empty fa-2x"></i><strong> {{average | currency:'DKK':true}}</strong></a>
 </div>
 <div *ngIf="temperature=='MIDDLE'">
-    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-half fa-2x"></i><strong> {{average}}</strong></a>
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-half fa-2x"></i><strong> {{average | currency:'DKK':true}}</strong></a>
 </div>
 <div *ngIf="temperature=='HIGH'">
-    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-full fa-2x"></i><strong> {{average}}</strong></a>
+    <a class="navbar-brand" routerLink="barometer"><i class="fa fa-thermometer-full fa-2x"></i><strong> {{average| currency:'DKK':true}}</strong></a>
 </div>

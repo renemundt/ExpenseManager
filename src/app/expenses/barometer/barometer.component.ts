@@ -54,7 +54,7 @@ export class BarometerComponent implements OnInit {
                 timestamp: moment(timestamp).toDate(),
                 totalAmount: tAmount,
                 monthToDayAmount: monthToDayAmountCnt,
-                average: monthToDayAmountCnt / ( moment(timestamp).toDate().getDate()   )
+                average: monthToDayAmountCnt / ( moment(timestamp).toDate().getDate())
             };
         }, this);
         return result;

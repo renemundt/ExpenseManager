@@ -4,6 +4,7 @@ import * as moment from 'moment'
 
 import { ExpensesService } from '../expenses.service'
 import { environment } from '../../../environments/environment'
+import { TemperatureService } from '../../shared/temperature.service'
 
 @Component({
     selector: 'app-indicator',
@@ -16,10 +17,13 @@ export class IndicatorComponent implements OnInit {
     private average: number
     private temperature: Temperature = 'UNKNOWN'
 
-    constructor(private expensesService: ExpensesService) { }
+    constructor(private expensesService: ExpensesService, private temperatureService: TemperatureService) { }
 
     ngOnInit() {
         this.getAverage()
+        this.temperatureService.expensesTouched$.subscribe(
+            expense => this.getAverage()
+        )
     }
 
     getAverage() {
