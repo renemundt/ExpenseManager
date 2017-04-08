@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
@@ -14,7 +15,7 @@ import { ExpenseDetailsComponent } from './expenses/expense-details/expense-deta
 import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 import { IndicatorComponent } from './expenses/indicator/indicator.component';
-import { TemperatureService } from './shared/temperature.service'
+import { TemperatureService } from './shared/temperature.service';
 
 const ROUTES: Routes = [
   // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
@@ -24,6 +25,10 @@ const ROUTES: Routes = [
   { path: 'expense-details/:id', component: ExpenseDetailsComponent },
   { path: 'barometer', component: BarometerComponent }
 ]
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp( new AuthConfig({}), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +49,11 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES, { useHash: true }),
     DateValueAccessorModule
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'da-DK'}, TemperatureService ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'da-DK'},
+    { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [ Http, RequestOptions ] },
+    TemperatureService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
