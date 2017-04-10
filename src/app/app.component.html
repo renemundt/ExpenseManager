@@ -1,2 +1,8 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div *ngIf="authService.authenticated()">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="!authService.authenticated()">
+    <app-auth></app-auth>
+    <router-outlet></router-outlet>
+</div>

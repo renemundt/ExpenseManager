@@ -16,10 +16,12 @@ import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 import { IndicatorComponent } from './expenses/indicator/indicator.component';
 import { TemperatureService } from './shared/temperature.service';
+import { AuthComponent } from './auth/auth/auth.component';
+import { AuthService } from './auth/auth.service'
 
 const ROUTES: Routes = [
   // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
-  { path: '', redirectTo: 'barometer', pathMatch: 'full' },
+  { path: '', component: AuthComponent },
   { path: 'create-expense', component: CreateExpenseComponent },
   { path: 'expenses', component: ExpensesComponent },
   { path: 'expense-details/:id', component: ExpenseDetailsComponent },
@@ -40,7 +42,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ExpenseDetailsComponent,
     ConfirmComponent,
     BarometerComponent,
-    IndicatorComponent
+    IndicatorComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   providers: [
     { provide: LOCALE_ID, useValue: 'da-DK'},
     { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [ Http, RequestOptions ] },
-    TemperatureService
+    TemperatureService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
