@@ -15,21 +15,29 @@ import { ExpenseDetailsComponent } from './expenses/expense-details/expense-deta
 import { ConfirmComponent } from './shared/confirm/confirm.component';
 import { BarometerComponent } from './expenses/barometer/barometer.component';
 import { IndicatorComponent } from './expenses/indicator/indicator.component';
-import { TemperatureService } from './shared/temperature.service';
-import { AuthComponent } from './auth/auth/auth.component';
+import { ExpenseManagerComponent } from './expense-manager/expense-manager.component'
+
+import { TemperatureService } from './shared/temperature.service'
 import { AuthService } from './auth/auth.service'
+import { AuthGuardService } from './auth/auth-guard.service'
 
 const ROUTES: Routes = [
-  // { path: '', component: InitSystemComponent }, admin credentials needed to create database on smileupss
-  { path: '', component: AuthComponent },
-  { path: 'create-expense', component: CreateExpenseComponent },
-  { path: 'expenses', component: ExpensesComponent },
-  { path: 'expense-details/:id', component: ExpenseDetailsComponent },
-  { path: 'barometer', component: BarometerComponent }
+  {
+    path: '', component: ExpenseManagerComponent, children: [
+      {
+        path: '', children: [
+          { path: 'create-expense', component: CreateExpenseComponent, canActivate: [AuthGuardService] },
+          { path: 'expenses', component: ExpensesComponent, canActivate: [AuthGuardService] },
+          { path: 'expense-details/:id', component: ExpenseDetailsComponent, canActivate: [AuthGuardService] },
+          { path: 'barometer', component: BarometerComponent, canActivate: [AuthGuardService] }
+        ]
+      }
+    ]
+  }
 ]
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp( new AuthConfig({}), http, options);
+  return new AuthHttp(new AuthConfig({}), http, options);
 }
 
 @NgModule({
@@ -43,20 +51,21 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ConfirmComponent,
     BarometerComponent,
     IndicatorComponent,
-    AuthComponent
+    ExpenseManagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: false }),
     DateValueAccessorModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'da-DK'},
-    { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [ Http, RequestOptions ] },
+    { provide: LOCALE_ID, useValue: 'da-DK' },
+    { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [Http, RequestOptions] },
     TemperatureService,
-    AuthService
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
