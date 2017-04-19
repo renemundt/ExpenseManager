@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/filter';
+import { Subject } from 'rxjs/Subject'
 
 import { authConfig } from './auth.config';
 
@@ -14,12 +15,17 @@ declare var Auth0Lock: any;
 @Injectable()
 export class AuthService {
 
+    private userAuthenticatedSource = new Subject<void>()
+
+    userAuthenticated$ = this.userAuthenticatedSource.asObservable()
+
     lock = new Auth0Lock(authConfig.clientID, authConfig.domain, {});
 
     constructor(private router: Router) {
         // Add callback for lock `authenticated` event
         this.lock.on('authenticated', (authResult) => {
             localStorage.setItem('id_token', authResult.idToken);
+            this.userAuthenticatedSource.next()
         });
     }
 
