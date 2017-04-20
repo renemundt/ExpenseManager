@@ -10,7 +10,9 @@ import { AuthService } from '../auth/auth.service'
 })
 export class ExpenseManagerComponent implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router) {
+        authService.handleAuthenticationWithHash();
+     }
 
     ngOnInit() {
         this.authService.userAuthenticated$.subscribe(() => {

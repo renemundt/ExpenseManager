@@ -9,10 +9,8 @@ export const environment = {
   production: false,
   baseUrl: 'http://localhost:5984/',
   url: 'http://localhost:5984/expensemanager',
-  // baseUrl: 'https://admin:645ead53cba1@couchdb-ffb027.smileupps.com/',
-  // url: 'https://admin:645ead53cba1@couchdb-ffb027.smileupps.com/expensemanager',
   databaseName: 'expensemanager',
   headers: new Headers({'Content-Type': 'application/json'}),
   thresholdLower: 250,
   thresholdLimit: 300
-};
+}

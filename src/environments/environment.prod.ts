@@ -2,11 +2,10 @@ import { Headers } from '@angular/http'
 
 export const environment = {
   production: true,
-  baseUrl: 'https://admin:645ead53cba1@couchdb-ffb027.smileupps.com/',
-  url: 'https://admin:645ead53cba1@couchdb-ffb027.smileupps.com/expensemanager',
+  baseUrl: 'https://renemundt.cloudant.com/',
+  url: 'https://renemundt.cloudant.com/expensemanager',
   databaseName: 'expensemanager',
-  headers: new Headers({'Content-Type': 'application/json'}),
+  headers: new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ZWRpY2Fzc2lydGFuY2Vmb3VzdGlvcmRsOjU2MDY3MDIxMjQ2NDA3MWFkYTc4MTVjMjVjMzQwMWYxZjZiOWNjZWU='}),
   thresholdLower: 250,
   thresholdLimit: 300
-
 }

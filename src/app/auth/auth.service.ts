@@ -38,8 +38,7 @@ export class AuthService {
         // Check if there's an unexpired JWT
         // It searches for an item in localStorage with key == 'id_token'
         let token = localStorage.getItem('id_token');
-        var res = tokenNotExpired('id_token', token)
-        return res;
+        return tokenNotExpired('id_token', token)
     };
 
     public logout() {
