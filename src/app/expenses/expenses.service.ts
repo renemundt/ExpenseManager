@@ -23,13 +23,13 @@ export class ExpensesService {
 
         const url = `${environment.url}/_design/timestamp/_view/expenses-view?startkey=${startKey}&endkey=${endKey}&include_docs=true`;
 
-        return this.http.get(url)
+        return this.http.get(url, { headers: environment.headers })
             .map((response: Response) =>  response.json().rows.map(x => x.doc as Expense));
     }
 
     getExpense(id: string): Observable<Expense> {
         const url = `${environment.url}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, { headers: environment.headers })
             .map((response: Response) => response.json() as Expense);
     }
 

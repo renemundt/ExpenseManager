@@ -1,0 +1,10 @@
+<!--<div *ngIf="authService.authenticated()">-->
+    <router-outlet></router-outlet>
+<!--</div>-->
+<div *ngIf="!authService.authenticated()" class="page-header">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 text-center">
+        <h1><i class="fa fa-user-circle"></i> Please log in to use the system</h1>
+    </div>
+    <div class="col-md-2"></div>    
+</div>

@@ -36,9 +36,6 @@ export class IndicatorComponent implements OnInit {
             if (this.average < environment.thresholdLower) { this.temperature = 'NORMAL'}
             if (this.average > environment.thresholdLower && this.average < environment.thresholdLimit) { this.temperature = 'MIDDLE'}
             if (this.average > environment.thresholdLimit) { this.temperature = 'HIGH'}
-
-
-            console.log('TEMPERATURE', this.temperature)
         })
     }
 }
