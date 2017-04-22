@@ -4,6 +4,23 @@ export class Expense {
     public amount: number
     public timestamp: Date
     public store: string
+    public profile: Profile
+
+    constructor() {
+        const profileFromStorage = JSON.parse(localStorage.getItem('profile'))
+        const profile  = new Profile(profileFromStorage.user_id, profileFromStorage.given_name)
+        this.profile = profile
+    }
+}
+
+export class Profile {
+    public id: string
+    public givenName: string
+
+    constructor(id: string, givenName: string) {
+        this.id = id
+        this.givenName = givenName
+    }
 }
 
 export class BarometerExpense {

@@ -25,6 +25,15 @@ export class AuthService {
         // Add callback for lock `authenticated` event
         this.lock.on('authenticated', (authResult) => {
             localStorage.setItem('id_token', authResult.idToken);
+
+            this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
+                if (error) {
+                    // Handle error
+                    return;
+                }
+                localStorage.setItem('profile', JSON.stringify(profile));
+            });
+
             this.userAuthenticatedSource.next()
         });
     }
