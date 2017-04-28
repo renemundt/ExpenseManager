@@ -1,24 +1,38 @@
 <header>
-  <nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <app-indicator *ngIf="authService.authenticated()"></app-indicator>
-    </div>
-      <div class="collapse navbar-collapse" id="navigationbar">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-brand">
+            <app-indicator></app-indicator>
+        </div>
         <ul class="nav navbar-nav">
-          <li *ngIf="authService.authenticated()" routerLinkActive="active"><a routerLink="expenses"><i class="fa fa-money fa-2x"></i> Expenses</a></li>
-          <li *ngIf="authService.authenticated()" routerLinkActive="active"><a routerLink="create-expense"><i class="fa fa-plus-square-o fa-2x"></i> Create</a></li>
-          <li *ngIf="!authService.authenticated()"><a href="#" (click)="authService.login()"><i class="fa fa-sign-in fa-2x"></i> Log In</a></li>
-          <li *ngIf="authService.authenticated()"><a href="#" (click)="authService.logout()"><i class="fa fa-sign-out fa-2x"></i> Log out</a></li>
+            <li class="pull-left" *ngIf="authService.authenticated()" routerLinkActive="active">
+                <a routerLink="expenses">
+                    <i class="fa fa-money fa-2x"></i>
+                    <span class="link-text hide-on-portrait"> Expenses</span>
+                </a>
+            </li>
+            <li class="pull-left" *ngIf="authService.authenticated()" routerLinkActive="active">
+                <a routerLink="create-expense">
+                    <i class="fa fa-plus-square-o fa-2x"></i>
+                    <span class="link-text hide-on-portrait"> Create</span>
+                </a>
+            </li>
+            <li class="pull-right" *ngIf="!authService.authenticated()">
+                <a href="#" (click)="authService.login()">
+                    <i class="fa fa-sign-in fa-2x"></i> 
+                    <span class="link-text"> Log In </span>
+                </a>
+            </li>
+            <li class="profile pull-right dropdown" *ngIf="authService.authenticated()">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img [src]="authService.loggedInProfile().picture" height="30px" width="30px" />
+                    <span class="hide-on-portrait">{{authService.loggedInProfile().name}}</span>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#" (click)="authService.logout()">Logout</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </header>

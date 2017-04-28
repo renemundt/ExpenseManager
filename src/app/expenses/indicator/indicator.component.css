@@ -7,7 +7,7 @@
 }
 
 strong {
-    font-size: 25px
+    vertical-align: super
 }
 
 .fa-2x + strong {
@@ -16,4 +16,12 @@ strong {
 
 .fa-thermometer-empty + strong {
     color: green
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover strong {
+    color: #fff;
 }
