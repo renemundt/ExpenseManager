@@ -7,6 +7,7 @@ import 'rxjs/add/operator/filter';
 import { Subject } from 'rxjs/Subject'
 
 import { authConfig } from './auth.config';
+import { Profile } from '../expenses/expense.models'
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -25,6 +26,15 @@ export class AuthService {
         // Add callback for lock `authenticated` event
         this.lock.on('authenticated', (authResult) => {
             localStorage.setItem('id_token', authResult.idToken);
+
+            this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
+                if (error) {
+                    // Handle error
+                    return;
+                }
+                localStorage.setItem('profile', JSON.stringify(profile));
+            });
+
             this.userAuthenticatedSource.next()
         });
     }
@@ -45,6 +55,10 @@ export class AuthService {
         // Remove token from localStorage
         localStorage.removeItem('id_token');
     };
+
+    public loggedInProfile(): Profile {
+        return JSON.parse(localStorage.getItem('profile')) as Profile
+    }
 
     public isLoggedIn() {
         const idToken = localStorage.getItem('id_token')

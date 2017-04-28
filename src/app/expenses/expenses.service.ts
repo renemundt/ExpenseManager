@@ -49,8 +49,3 @@ export class ExpensesService {
         return this.http.delete(url, {headers: environment.headers }).map(() => null);
     }
 }
-
-export class RequestResult {
-    Success: boolean;
-    Message: string;
-}
