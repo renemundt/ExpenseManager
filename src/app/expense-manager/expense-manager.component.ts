@@ -16,7 +16,7 @@ export class ExpenseManagerComponent implements OnInit {
 
     ngOnInit() {
         this.authService.userAuthenticated$.subscribe(() => {
-            setTimeout(() => this.router.navigate(['barometer']), 2000)
+            setTimeout(() => this.router.navigate(['barometer']), 6000)
         })
     }
 

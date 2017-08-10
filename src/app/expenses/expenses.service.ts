@@ -1,51 +1,37 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Expense } from './expense.models';
 import { Http, Response, Headers } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-
-import { Expense } from './expense.models';
 import { environment } from '../../environments/environment'
 
-import * as moment from 'moment'
+import { AbstractService, ExpensesFactory, ServiceKind } from './expenses.factory'
 
 @Injectable()
-export class ExpensesService {
+export class ExpensesService implements AbstractService {
 
-    constructor(private http: Http) { }
+    private ExpensesService: AbstractService
+
+    constructor(private expensesFactory: ExpensesFactory) {
+        let serviceKind: ServiceKind = ServiceKind[localStorage.getItem('serviceKind')];
+        if ( serviceKind == null ) { serviceKind = ServiceKind.CouchDb }
+        this.ExpensesService = expensesFactory.createExpensesService(serviceKind) 
+    }
 
     getExpenses(): Observable<Expense[]> {
-        const presentDay = moment()
-        const sameDayLastMonth = moment().subtract(1, 'months')
-
-        const startKey = `"${sameDayLastMonth.format('YYYY')}-${sameDayLastMonth.format('MM')}-${sameDayLastMonth.daysInMonth()}T23:59:59Z"`
-        const endKey = `"${presentDay.format('YYYY')}-${presentDay.format('MM')}-${presentDay.daysInMonth()}T23:59:59Z"`
-
-        const url = `${environment.url}/_design/timestamp/_view/expenses-view?startkey=${startKey}&endkey=${endKey}&include_docs=true`;
-
-        return this.http.get(url, { headers: environment.headers })
-            .map((response: Response) =>  response.json().rows.map(x => x.doc as Expense));
+        return this.ExpensesService.getExpenses()
     }
-
     getExpense(id: string): Observable<Expense> {
-        const url = `${environment.url}/${id}`;
-        return this.http.get(url, { headers: environment.headers })
-            .map((response: Response) => response.json() as Expense);
+        return this.ExpensesService.getExpense(id)
     }
-
     createExpense(expense: Expense): Observable<Response> {
-        return this.http.post(environment.url, JSON.stringify(expense), { headers: environment.headers })
-            .map((response: Response) => response);
+        return this.ExpensesService.createExpense(expense)
     }
-
     updateExpense(expense: Expense): Observable<Response> {
-        const url = `${environment.url}/${expense._id}`;
-        return this.http.put(url, JSON.stringify(expense), { headers: environment.headers})
-            .map((response: Response) => response);
+        return this.updateExpense(expense)
     }
-
     deleteExpense(id: string, rev: string): Observable<void> {
-        const url = `${environment.url}/${id}?rev=${rev}`;
-        return this.http.delete(url, {headers: environment.headers }).map(() => null);
+        return this.deleteExpense(id, rev)
     }
 }
+

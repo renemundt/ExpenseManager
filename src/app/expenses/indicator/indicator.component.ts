@@ -5,12 +5,15 @@ import * as moment from 'moment'
 import { ExpensesService } from '../expenses.service'
 import { environment } from '../../../environments/environment'
 import { TemperatureService } from '../../shared/temperature.service'
+import { ExpensesFactory } from '../expenses.factory';
+import { ExpensesCouchService } from '../expenses-couch.service'
+import { ExpensesInMemoryService } from '../expenses-inmemory.service'
 
 @Component({
     selector: 'app-indicator',
     templateUrl: './indicator.component.html',
     styleUrls: ['./indicator.component.css'],
-    providers: [ ExpensesService]
+    providers: [ ExpensesService, ExpensesFactory, ExpensesCouchService, ExpensesInMemoryService]
 })
 export class IndicatorComponent implements OnInit {
 
