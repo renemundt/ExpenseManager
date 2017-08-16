@@ -8,9 +8,9 @@ import { TemperatureService } from '../../shared/temperature.service'
 @Component({
     selector: 'app-expense-details',
     templateUrl: './expense-details.component.html',
-    styleUrls: ['./expense-details.component.css'],
-    providers: [ExpensesService]
+    styleUrls: ['./expense-details.component.css']
 })
+
 export class ExpenseDetailsComponent implements OnInit {
 
     disableInput = true

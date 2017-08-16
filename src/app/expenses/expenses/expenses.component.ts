@@ -6,15 +6,11 @@ import { Expense } from './../expense.models'
 import { TemperatureService } from '../../shared/temperature.service'
 
 import { ConfirmEvent } from '../../shared/confirm/confirm.models'
-import { ExpensesFactory } from '../expenses.factory'
-import { ExpensesCouchService } from '../expenses-couch.service'
-import { ExpensesInMemoryService } from '../expenses-inmemory.service'
 
 @Component({
     selector: 'app-expenses',
     templateUrl: './expenses.component.html',
-    styleUrls: ['./expenses.component.css'],
-    providers: [ ExpensesService, ExpensesFactory, ExpensesCouchService, ExpensesInMemoryService]
+    styleUrls: ['./expenses.component.css']
 })
 export class ExpensesComponent implements OnInit {
 

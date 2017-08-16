@@ -12,7 +12,10 @@ export const environment = {
   databaseName: 'expensemanager',
   headers: new Headers({'Content-Type': 'application/json'}),
   thresholdLower: 250,
-  thresholdLimit: 300
+  thresholdLimit: 300,
+  persistanceType: 'couchdb',
+  // persistanceType: 'mongo',
+  // persistanceType: 'inmemory',
   // production: true,
   // baseUrl: 'https://renemundt.cloudant.com/',
   // url: 'https://renemundt.cloudant.com/expensemanager',

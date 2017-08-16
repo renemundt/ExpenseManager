@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 import { AuthService } from '../auth/auth.service'
 
@@ -10,12 +10,16 @@ import { AuthService } from '../auth/auth.service'
 })
 export class ExpenseManagerComponent implements OnInit {
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(
+        private authService: AuthService, 
+        private router: Router,
+        private activedRoute: ActivatedRoute ) {
         authService.handleAuthenticationWithHash();
      }
 
     ngOnInit() {
         this.authService.userAuthenticated$.subscribe(() => {
+            console.log('authed')
             setTimeout(() => this.router.navigate(['barometer']), 6000)
         })
     }

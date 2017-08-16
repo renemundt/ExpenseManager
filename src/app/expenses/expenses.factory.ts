@@ -4,6 +4,7 @@ import { Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { ExpensesInMemoryService } from './expenses-inmemory.service'
 import { ExpensesCouchService } from './expenses-couch.service'
+import { environment } from '../../environments/environment'
 
 export interface AbstractService {
     getExpenses(): Observable<Expense[]>
@@ -17,19 +18,12 @@ export interface AbstractService {
 export class ExpensesFactory {
         constructor(private expensesCouchService: ExpensesCouchService, private expensesInMemoryService: ExpensesInMemoryService) {}
 
-    createExpensesService(kind: ServiceKind): AbstractService {
-        switch(kind) {
-            case ServiceKind.CouchDb:
+    createExpensesService(): AbstractService {
+        switch(environment.persistanceType) {
+            case 'couchdb':
                 return this.expensesCouchService;
-            case ServiceKind.InMemory:
+            case 'inmemory':
                 return this.expensesInMemoryService;
         }
     }
-
-}
-
-export enum ServiceKind {
-    CouchDb,
-    Mongo,
-    InMemory
 }

@@ -20,6 +20,10 @@ import { ExpenseManagerComponent } from './expense-manager/expense-manager.compo
 import { TemperatureService } from './shared/temperature.service'
 import { AuthService } from './auth/auth.service'
 import { AuthGuardService } from './auth/auth-guard.service'
+import { ExpensesService } from './expenses/expenses.service'
+import { ExpensesFactory } from './expenses/expenses.factory'
+import { ExpensesCouchService } from './expenses/expenses-couch.service'
+import { ExpensesInMemoryService } from './expenses/expenses-inmemory.service'
 
 const ROUTES: Routes = [
   {
@@ -65,7 +69,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     { provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [Http, RequestOptions] },
     TemperatureService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    ExpensesService,
+    ExpensesFactory,
+    ExpensesCouchService,
+    ExpensesInMemoryService
+
   ],
   bootstrap: [AppComponent]
 })

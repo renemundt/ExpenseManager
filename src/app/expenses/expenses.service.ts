@@ -5,7 +5,7 @@ import { Http, Response, Headers } from '@angular/http';
 
 import { environment } from '../../environments/environment'
 
-import { AbstractService, ExpensesFactory, ServiceKind } from './expenses.factory'
+import { AbstractService, ExpensesFactory} from './expenses.factory'
 
 @Injectable()
 export class ExpensesService implements AbstractService {
@@ -13,9 +13,7 @@ export class ExpensesService implements AbstractService {
     private ExpensesService: AbstractService
 
     constructor(private expensesFactory: ExpensesFactory) {
-        let serviceKind: ServiceKind = ServiceKind[localStorage.getItem('serviceKind')];
-        if ( serviceKind == null ) { serviceKind = ServiceKind.CouchDb }
-        this.ExpensesService = expensesFactory.createExpensesService(serviceKind) 
+        this.ExpensesService = expensesFactory.createExpensesService() 
     }
 
     getExpenses(): Observable<Expense[]> {
@@ -28,10 +26,10 @@ export class ExpensesService implements AbstractService {
         return this.ExpensesService.createExpense(expense)
     }
     updateExpense(expense: Expense): Observable<Response> {
-        return this.updateExpense(expense)
+        return this.ExpensesService.updateExpense(expense)
     }
     deleteExpense(id: string, rev: string): Observable<void> {
-        return this.deleteExpense(id, rev)
+        return this.ExpensesService.deleteExpense(id, rev)
     }
 }
 

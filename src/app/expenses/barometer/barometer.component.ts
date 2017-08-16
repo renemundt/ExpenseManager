@@ -11,9 +11,9 @@ import { environment } from '../../../environments/environment'
 @Component({
     selector: 'app-barometer',
     templateUrl: './barometer.component.html',
-    styleUrls: ['./barometer.component.css'],
-    providers: [ExpensesService]
+    styleUrls: ['./barometer.component.css']
 })
+
 export class BarometerComponent implements OnInit {
 
     expenses: Expense[] = []

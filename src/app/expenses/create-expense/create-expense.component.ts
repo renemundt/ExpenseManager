@@ -6,12 +6,10 @@ import { Expense } from './../expense.models'
 import { ExpensesService } from '../expenses.service'
 import { TemperatureService } from '../../shared/temperature.service'
 
-
 @Component({
     selector: 'app-create-expense',
     templateUrl: './create-expense.component.html',
-    styleUrls: ['./create-expense.component.css'],
-    providers: [ExpensesService]
+    styleUrls: ['./create-expense.component.css']
 })
 export class CreateExpenseComponent implements OnInit {
 
