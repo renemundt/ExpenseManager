@@ -69,7 +69,7 @@ export class AuthService {
             .router
             .events
             .filter(event => event.constructor.name === 'NavigationStart')
-            .filter(event => (/access_token|id_token|error/).test(event.url))
+            .filter((event: any)=> (/access_token|id_token|error/).test(event.url))
             .subscribe(event => {
                 this.lock.resumeAuth(window.location.hash, (error, authResult) => {
                     if (error) return console.log(error);
