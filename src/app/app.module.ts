@@ -21,9 +21,7 @@ import { TemperatureService } from './shared/temperature.service'
 import { AuthService } from './auth/auth.service'
 import { AuthGuardService } from './auth/auth-guard.service'
 import { ExpensesService } from './expenses/expenses.service'
-import { ExpensesFactory } from './expenses/expenses.factory'
 import { ExpensesCouchService } from './expenses/expenses-couch.service'
-import { ExpensesInMemoryService } from './expenses/expenses-inmemory.service'
 
 const ROUTES: Routes = [
   {
@@ -71,10 +69,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthService,
     AuthGuardService,
     ExpensesService,
-    ExpensesFactory,
-    ExpensesCouchService,
-    ExpensesInMemoryService
-
+    ExpensesCouchService
   ],
   bootstrap: [AppComponent]
 })

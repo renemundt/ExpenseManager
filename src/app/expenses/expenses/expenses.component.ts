@@ -28,14 +28,15 @@ export class ExpensesComponent implements OnInit {
     getExpenses() {
         return this.expensesService.getExpenses()
             .subscribe((expenses: Expense[]) => {
+                console.log('expenses', expenses)
                 this.expenses = this.sortExpenses(expenses)
             },
             error => { console.error('em-error', error)
             })
     }
 
-    deleteExpense(id: string, rev: string) {
-        this.expensesService.deleteExpense(id, rev).subscribe(
+    deleteExpense(id: string) {
+        this.expensesService.deleteExpense(id).subscribe(
             () => {
                 this.temperatureService.touchExpenses()
                 this.getExpenses()
@@ -44,14 +45,14 @@ export class ExpensesComponent implements OnInit {
     }
 
     onConfirmed(confirmEvent: ConfirmEvent) {
-        this.deleteExpense(confirmEvent.id, confirmEvent.rev)
+        this.deleteExpense(confirmEvent.id)
     }
 
     private sortExpenses(expenses: Expense[]): Expense[] {
         return expenses.sort(function(a, b) {
-            a.timestamp = new Date(a.timestamp)
-            b.timestamp = new Date(b.timestamp)
-            return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0
+            a.created = new Date(a.created)
+            b.created = new Date(b.created)
+            return a.created > b.created ? -1 : a.created < b.created ? 1 : 0
         })
     }
 }

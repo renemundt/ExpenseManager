@@ -42,7 +42,7 @@ export class BarometerComponent implements OnInit {
     mapReduce(expenses: Expense[]): BarometerExpense[] {
         let monthToDayAmountCnt = 0
         const result = expenses.reduce(function (res, currentValue) {
-            const tempDate = moment(currentValue.timestamp).format('YYYY-MM-DD')
+            const tempDate = moment(currentValue.created).format('YYYY-MM-DD')
             if (res.indexOf(tempDate) === -1) {
                 res.push(tempDate);
             }
@@ -62,7 +62,7 @@ export class BarometerComponent implements OnInit {
 
     private getTotalAmountPerDay(expenses: Expense[], timestamp: string): number {
         const result = expenses.filter(function (expense) {
-            return moment(expense.timestamp).format('YYYY-MM-DD') === timestamp;
+            return moment(expense.created).format('YYYY-MM-DD') === timestamp;
         }).map(function (expense) { return expense.amount; })
             .reduce((previous: number, current): number => {
                 return previous + current;
@@ -72,9 +72,9 @@ export class BarometerComponent implements OnInit {
 
     private sortExpenses(expenses: Expense[]): Expense[] {
         return expenses.sort(function (a, b) {
-            a.timestamp = new Date(a.timestamp);
-            b.timestamp = new Date(b.timestamp);
-            return a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0;
+            a.created = new Date(a.created);
+            b.created = new Date(b.created);
+            return a.created < b.created ? -1 : a.created > b.created ? 1 : 0;
         });
     }
 

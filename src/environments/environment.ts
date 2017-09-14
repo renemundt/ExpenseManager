@@ -8,7 +8,7 @@ import { Headers } from '@angular/http'
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5984/',
-  url: 'http://localhost:5984/expensemanager',
+  url: 'http://localhost:8666/api/', // NEW BACKEND
   databaseName: 'expensemanager',
   headers: new Headers({'Content-Type': 'application/json'}),
   thresholdLower: 250,

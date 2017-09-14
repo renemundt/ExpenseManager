@@ -5,31 +5,47 @@ import { Http, Response, Headers } from '@angular/http';
 
 import { environment } from '../../environments/environment'
 
-import { AbstractService, ExpensesFactory} from './expenses.factory'
+import * as moment from 'moment'
 
 @Injectable()
-export class ExpensesService implements AbstractService {
+export class ExpensesService {
 
-    private ExpensesService: AbstractService
-
-    constructor(private expensesFactory: ExpensesFactory) {
-        this.ExpensesService = expensesFactory.createExpensesService() 
-    }
+    constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
-        return this.ExpensesService.getExpenses()
+        const presentDay = moment()
+        const sameDayLastMonth = moment().subtract(1, 'months')
+
+        const startDate = `${sameDayLastMonth.format('YYYY')}-${sameDayLastMonth.format('MM')}-${sameDayLastMonth.daysInMonth()}T23:59:59.000Z`
+        const endDate = `${presentDay.format('YYYY')}-${presentDay.format('MM')}-${presentDay.daysInMonth()}T23:59:59.000Z`
+
+        const url = `${environment.url}expenses?startDate=${startDate}&endDate=${endDate}`;
+
+        return this.http.get(url, { headers: environment.headers })
+            .map((response: Response) =>
+            response.json().map(x => x as Expense));
     }
+
     getExpense(id: string): Observable<Expense> {
-        return this.ExpensesService.getExpense(id)
+        const url = `${environment.url}expenses/${id}`;
+        return this.http.get(url, { headers: environment.headers })
+            .map((response: Response) => response.json() as Expense);
     }
+
     createExpense(expense: Expense): Observable<Response> {
-        return this.ExpensesService.createExpense(expense)
+        return this.http.post(`${environment.url}expenses/`, JSON.stringify(expense), { headers: environment.headers })
+            .map((response: Response) => response);
     }
+
     updateExpense(expense: Expense): Observable<Response> {
-        return this.ExpensesService.updateExpense(expense)
+        const url = `${environment.url}expenses/${expense.id}`;
+        return this.http.put(url, JSON.stringify(expense), { headers: environment.headers})
+            .map((response: Response) => response);
     }
-    deleteExpense(id: string, rev: string): Observable<void> {
-        return this.ExpensesService.deleteExpense(id, rev)
+
+    deleteExpense(id: string): Observable<void> {
+        const url = `${environment.url}expenses/${id}`;
+        return this.http.delete(url, {headers: environment.headers }).map(() => null);
     }
 }
 

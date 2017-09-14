@@ -1,9 +1,9 @@
 export class Expense {
-    public _id: string
-    public _rev: string
+    public id: string
     public amount: number
-    public timestamp: Date
     public store: string
+    public created: Date
+    public updated: Date
     public profile: Profile
 
     constructor() {

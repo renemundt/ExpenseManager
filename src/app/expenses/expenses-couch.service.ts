@@ -7,12 +7,10 @@ import 'rxjs/add/operator/map';
 import { Expense } from './expense.models';
 import { environment } from '../../environments/environment'
 
-import { AbstractService } from './expenses.factory'
-
 import * as moment from 'moment'
 
 @Injectable()
-export class ExpensesCouchService implements AbstractService {
+export class ExpensesCouchService  {
 
     constructor(private http: Http) { }
 
@@ -41,7 +39,7 @@ export class ExpensesCouchService implements AbstractService {
     }
 
     updateExpense(expense: Expense): Observable<Response> {
-        const url = `${environment.url}/${expense._id}`;
+        const url = `${environment.url}/${expense.id}`;
         return this.http.put(url, JSON.stringify(expense), { headers: environment.headers})
             .map((response: Response) => response);
     }
