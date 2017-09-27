@@ -12,7 +12,7 @@ export class ExpensesService {
 
     constructor(private http: Http) { }
 
-    getExpenses(): Observable<Expense[]> {
+    getExpenses(): Observable<Expense[]> { // TODO: deliver start- and endDate via Parameters
         const presentDay = moment()
         const sameDayLastMonth = moment().subtract(1, 'months')
 

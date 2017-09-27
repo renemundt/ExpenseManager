@@ -4,6 +4,7 @@ export class Expense {
     public store: string
     public created: Date
     public updated: Date
+    public timeOfPurchase: Date
     public profile: Profile
 
     constructor() {

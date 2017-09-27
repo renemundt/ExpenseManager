@@ -23,7 +23,7 @@ export class CreateExpenseComponent implements OnInit {
 
     ngOnInit() {
         const now = new Date();
-        this.expense.created = new Date(now.getTime())
+        this.expense.timeOfPurchase = new Date(now.getTime())
     }
 
     onSubmit(): void {
