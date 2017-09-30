@@ -8,6 +8,10 @@ import { AuthService } from '../auth/auth.service'
 })
 export class HeaderComponent {
 
-  constructor(private authService: AuthService) { }
+  authorizationService: AuthService
+
+  constructor(private authService: AuthService) {
+    this.authorizationService = authService
+   }
 
 }

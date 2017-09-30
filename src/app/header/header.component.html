@@ -4,32 +4,32 @@
             <app-indicator></app-indicator>
         </div>
         <ul class="nav navbar-nav">
-            <li class="pull-left" *ngIf="authService.authenticated()" routerLinkActive="active">
+            <li class="pull-left" *ngIf="authorizationService.authenticated()" routerLinkActive="active">
                 <a routerLink="expenses">
                     <i class="fa fa-money fa-2x"></i>
                     <span class="link-text hide-on-portrait"> Expenses</span>
                 </a>
             </li>
-            <li class="pull-left" *ngIf="authService.authenticated()" routerLinkActive="active">
+            <li class="pull-left" *ngIf="authorizationService.authenticated()" routerLinkActive="active">
                 <a routerLink="create-expense">
                     <i class="fa fa-plus-square-o fa-2x"></i>
                     <span class="link-text hide-on-portrait"> Create</span>
                 </a>
             </li>
-            <li class="pull-right" *ngIf="!authService.authenticated()">
-                <a href="#" (click)="authService.login()">
+            <li class="pull-right" *ngIf="!authorizationService.authenticated()">
+                <a href="#" (click)="authorizationService.login()">
                     <i class="fa fa-sign-in fa-2x"></i> 
                     <span class="link-text"> Log In </span>
                 </a>
             </li>
-            <li class="profile pull-right dropdown" *ngIf="authService.authenticated()">
+            <li class="profile pull-right dropdown" *ngIf="authorizationService.authenticated()">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img [src]="authService.loggedInProfile().picture" height="30px" width="30px" />
-                    <span class="hide-on-portrait">{{authService.loggedInProfile().name}}</span>
+                    <img [src]="authorizationService.loggedInProfile().picture" height="30px" width="30px" />
+                    <span class="hide-on-portrait">{{authorizationService.loggedInProfile().name}}</span>
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" (click)="authService.logout()">Logout</a>
+                        <a href="#" (click)="authorizationService.logout()">Logout</a>
                     </li>
                 </ul>
             </li>

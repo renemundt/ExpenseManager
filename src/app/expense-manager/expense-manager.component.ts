@@ -10,16 +10,18 @@ import { AuthService } from '../auth/auth.service'
 })
 export class ExpenseManagerComponent implements OnInit {
 
+    authorizationService: AuthService
+
     constructor(
-        private authService: AuthService, 
+        private authService: AuthService,
         private router: Router,
         private activedRoute: ActivatedRoute ) {
         authService.handleAuthenticationWithHash();
+        this.authorizationService = this.authService
      }
 
     ngOnInit() {
         this.authService.userAuthenticated$.subscribe(() => {
-            console.log('authed')
             setTimeout(() => this.router.navigate(['barometer']), 6000)
         })
     }

@@ -12,8 +12,8 @@ import { InitSystemService, InitMessage } from './init-system.service';
 })
 export class InitSystemComponent implements OnInit {
 
-  private errorMessage: string;
-  private systemInitialized: boolean;
+  errorMessage: string;
+  systemInitialized: boolean;
 
   constructor(
     private router: Router,

@@ -1,8 +1,8 @@
-<!--<div *ngIf="authService.authenticated()">-->
+<!--<div *ngIf="authorizationService.authenticated()">-->
 <router-outlet></router-outlet>
 <!--</div>-->
 <div class="container-fluid">
-    <div *ngIf="!authService.authenticated()" class="page-header">
+    <div *ngIf="!authorizationService.authenticated()" class="page-header">
 
         <div class="col-md-2"></div>
         <div class="col-md-6 text-center">

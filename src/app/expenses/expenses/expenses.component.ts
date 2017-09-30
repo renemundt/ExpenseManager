@@ -14,7 +14,7 @@ import { ConfirmEvent } from '../../shared/confirm/confirm.models'
 })
 export class ExpensesComponent implements OnInit {
 
-    private expenses: Expense[]
+    public expenses: Expense[]
 
     constructor(
         private expensesService: ExpensesService,

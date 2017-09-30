@@ -13,8 +13,8 @@ import { TemperatureService } from '../../shared/temperature.service'
 })
 export class IndicatorComponent implements OnInit {
 
-    private average: number
-    private temperature: Temperature = 'UNKNOWN'
+    average: number
+    temperature: Temperature = 'UNKNOWN'
 
     constructor(private expensesService: ExpensesService, private temperatureService: TemperatureService) { }
 
