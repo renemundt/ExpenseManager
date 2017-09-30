@@ -2,10 +2,9 @@ import { Headers } from '@angular/http'
 
 export const environment = {
   production: true,
-  baseUrl: 'https://renemundt.cloudant.com/',
-  url: 'https://renemundt.cloudant.com/expensemanager',
+  url: 'https://expense-manager-backend.herokuapp.com/api/', // NEW BACKEND
   databaseName: 'expensemanager',
-  headers: new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ZWRpY2Fzc2lydGFuY2Vmb3VzdGlvcmRsOjU2MDY3MDIxMjQ2NDA3MWFkYTc4MTVjMjVjMzQwMWYxZjZiOWNjZWU='}),
+  headers: new Headers({'Content-Type': 'application/json'}),
   thresholdLower: 250,
   thresholdLimit: 300
 }
