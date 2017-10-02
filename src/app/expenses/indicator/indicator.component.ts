@@ -27,8 +27,6 @@ export class IndicatorComponent implements OnInit {
 
     setAverage() {
         this.expensesService.getExpenses().subscribe(expenses => {
-            console.log('expenses', expenses)
-            console.log('expenses.length', expenses.length)
             if (expenses.length === 0) {
                 this.average = 0
                 this.temperature = 'NORMAL'
