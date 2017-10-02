@@ -28,10 +28,10 @@ export class ExpensesComponent implements OnInit {
     getExpenses() {
         return this.expensesService.getExpenses()
             .subscribe((expenses: Expense[]) => {
-                console.log('expenses', expenses)
                 this.expenses = this.sortExpenses(expenses)
             },
-            error => { console.error('em-error', error)
+            error => {
+                console.error('em-error', error)
             })
     }
 
@@ -49,7 +49,7 @@ export class ExpensesComponent implements OnInit {
     }
 
     private sortExpenses(expenses: Expense[]): Expense[] {
-        return expenses.sort(function(a, b) {
+        return expenses.sort(function (a, b) {
             a.created = new Date(a.created)
             b.created = new Date(b.created)
             return a.created > b.created ? -1 : a.created < b.created ? 1 : 0

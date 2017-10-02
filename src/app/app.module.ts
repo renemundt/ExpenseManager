@@ -8,7 +8,6 @@ import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
-import { InitSystemComponent } from './expenses/init-system/init-system.component';
 import { HeaderComponent } from './header/header.component';
 import { CreateExpenseComponent } from './expenses/create-expense/create-expense.component';
 import { ExpenseDetailsComponent } from './expenses/expense-details/expense-details.component';
@@ -45,7 +44,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   declarations: [
     AppComponent,
     ExpensesComponent,
-    InitSystemComponent,
     HeaderComponent,
     CreateExpenseComponent,
     ExpenseDetailsComponent,

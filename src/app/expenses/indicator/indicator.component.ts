@@ -19,14 +19,18 @@ export class IndicatorComponent implements OnInit {
     constructor(private expensesService: ExpensesService, private temperatureService: TemperatureService) { }
 
     ngOnInit() {
-        this.getAverage()
         this.temperatureService.expensesTouched$.subscribe(
-            expense => this.getAverage()
+            expense => this.setAverage()
         )
     }
 
-    getAverage() {
+    setAverage() {
         this.expensesService.getExpenses().subscribe(expenses => {
+            if (expenses.length === 0) {
+                this.average = 0
+                this.temperature = 'NORMAL'
+                return
+            }
             const total = expenses.map(expense => expense.amount)
                 .reduce((previous: number, current: number): number => {
                     return previous + current;
