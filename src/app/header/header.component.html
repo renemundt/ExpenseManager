@@ -4,28 +4,22 @@
             <app-indicator></app-indicator>
         </div>
         <ul class="nav navbar-nav">
-            <li class="pull-left" *ngIf="authorizationService.isAuthenticated()" routerLinkActive="active">
-                <a routerLink="expenses">
+            <li class="pull-left" routerLinkActive="active">
+                <a routerLink="/expenses">
                     <i class="fa fa-money fa-2x"></i>
                     <span class="link-text hide-on-portrait"> Expenses</span>
                 </a>
             </li>
-            <li class="pull-left" *ngIf="authorizationService.isAuthenticated()" routerLinkActive="active">
-                <a routerLink="create-expense">
+            <li class="pull-left" routerLinkActive="active">
+                <a routerLink="/create-expense">
                     <i class="fa fa-plus-square-o fa-2x"></i>
                     <span class="link-text hide-on-portrait"> Create</span>
                 </a>
             </li>
-            <li class="pull-right" *ngIf="!authorizationService.isAuthenticated()">
-                <a href="#" (click)="authorizationService.login()">
-                    <i class="fa fa-sign-in fa-2x"></i> 
-                    <span class="link-text"> Log In </span>
-                </a>
-            </li>
-            <li class="profile pull-right dropdown" *ngIf="authorizationService.isAuthenticated()">
+            <li class="profile pull-right dropdown" *ngIf="profile">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img [src]="profile?.picture" height="30px" width="30px" />
-                    <span class="hide-on-portrait">{{profile?.name}}</span>
+                    <img [src]="profile.picture" height="30px" width="30px" />
+                    <span class="hide-on-portrait">{{profile.name}}</span>
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -36,4 +30,3 @@
         </ul>
     </nav>
 </header>
-<router-outlet></router-outlet>

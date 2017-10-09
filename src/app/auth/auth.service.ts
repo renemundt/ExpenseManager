@@ -32,7 +32,8 @@ export class AuthService {
                 this.router.navigate(['/expenses']);
             } else if (err) {
                 this.router.navigate(['/expenses']);
-                console.log(err);
+            } else {
+                this.login()
             }
         });
     }
@@ -50,8 +51,8 @@ export class AuthService {
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
-        // Go back to the home route
-        this.router.navigate(['/']);
+        // Prompt for login again
+        this.login()
     }
 
     public isAuthenticated(): boolean {
@@ -60,10 +61,6 @@ export class AuthService {
         const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return new Date().getTime() < expiresAt;
     }
-
-    // public loggedInProfile(): Profile {
-    //     return JSON.parse(localStorage.getItem('profile')) as Profile
-    // }
 
     public getProfile(cb): any {
         const accessToken = localStorage.getItem('access_token');
@@ -79,6 +76,4 @@ export class AuthService {
           cb(err, profile);
         });
       }
-
-
 }

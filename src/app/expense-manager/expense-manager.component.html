@@ -1,13 +1,4 @@
 <div *ngIf="authorizationService.isAuthenticated()">
-<router-outlet></router-outlet>
-</div>
-<div class="container-fluid">
-    <div *ngIf="!authorizationService.isAuthenticated()" class="page-header">
-
-        <div class="col-md-2"></div>
-        <div class="col-md-6 text-center">
-            <h1><i class="fa fa-user-circle"></i> Please log in to use the system</h1>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
 </div>
