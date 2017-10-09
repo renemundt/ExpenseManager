@@ -7,11 +7,7 @@ export class Expense {
     public timeOfPurchase: Date
     public profile: Profile
 
-    constructor() {
-        const profileFromStorage = JSON.parse(localStorage.getItem('profile'))
-        const profile  = new Profile(profileFromStorage.user_id, profileFromStorage.given_name)
-        this.profile = profile
-    }
+    constructor() { }
 }
 
 export class Profile {

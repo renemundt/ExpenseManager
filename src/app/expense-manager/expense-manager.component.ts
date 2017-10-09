@@ -16,14 +16,10 @@ export class ExpenseManagerComponent implements OnInit {
         private authService: AuthService,
         private router: Router,
         private activedRoute: ActivatedRoute ) {
-        authService.handleAuthenticationWithHash();
         this.authorizationService = this.authService
      }
 
     ngOnInit() {
-        this.authService.userAuthenticated$.subscribe(() => {
-            setTimeout(() => this.router.navigate(['barometer']), 6000)
-        })
     }
 
 }

@@ -19,9 +19,11 @@ import { ExpenseManagerComponent } from './expense-manager/expense-manager.compo
 import { TemperatureService } from './shared/temperature.service'
 import { AuthService } from './auth/auth.service'
 import { AuthGuardService } from './auth/auth-guard.service'
-import { ExpensesService } from './expenses/expenses.service'
+import { ExpensesService } from './expenses/expenses.service';
+import { CallbackComponent } from './auth/callback/callback.component'
 
 const ROUTES: Routes = [
+  { path: 'callback', component: CallbackComponent},
   {
     path: '', component: ExpenseManagerComponent, children: [
       {
@@ -50,7 +52,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     ConfirmComponent,
     BarometerComponent,
     IndicatorComponent,
-    ExpenseManagerComponent
+    ExpenseManagerComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,

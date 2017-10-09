@@ -1,17 +1,31 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../auth/auth.service'
+import { Profile } from '../expenses/expense.models';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  authorizationService: AuthService
+    profile: any
 
-  constructor(private authService: AuthService) {
-    this.authorizationService = authService
-   }
+    authorizationService: AuthService
+
+    constructor(private authService: AuthService) {
+        this.authorizationService = authService
+    }
+
+    ngOnInit() {
+
+        if (this.authorizationService.userProfile) {
+            this.profile = this.authorizationService.userProfile;
+        } else if (this.authorizationService.isAuthenticated()) {
+            this.authorizationService.getProfile((err, profile) => {
+                this.profile = profile;
+            });
+        }
+    }
 
 }
