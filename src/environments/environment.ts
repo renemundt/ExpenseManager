@@ -6,8 +6,14 @@
 import { Headers } from '@angular/http'
 
 export const environment = {
-  production: false,
-  url: 'http://localhost:8666/api/',
-  thresholdLower: 300,
-  thresholdLimit: 400
+    production: false,
+    url: 'http://localhost:8666/api/',
+    thresholdLower: 300,
+    thresholdLimit: 400,
+    auth0: {
+        clientID: 'V8Vq7mYp08JGKn5qDULusXPWHs7VfYz1',
+        domain: 'renemundt.eu.auth0.com',
+        audience: 'https://renemundt.eu.auth0.com/userinfo',
+        redirectUri: 'http://localhost:4293/callback',
+    }
 }

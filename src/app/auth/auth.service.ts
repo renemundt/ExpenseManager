@@ -3,16 +3,17 @@ import { Router } from '@angular/router'
 import 'rxjs/add/operator/filter'
 import * as auth0 from 'auth0-js'
 import { Profile } from '../expenses/expense.models';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
 
     auth0 = new auth0.WebAuth({
-        clientID: 'V8Vq7mYp08JGKn5qDULusXPWHs7VfYz1',
-        domain: 'renemundt.eu.auth0.com',
+        clientID: environment.auth0.clientID,
+        domain: environment.auth0.domain,
         responseType: 'token id_token',
-        audience: 'https://renemundt.eu.auth0.com/userinfo',
-        redirectUri: 'http://localhost:4293/callback',
+        audience: environment.auth0.audience,
+        redirectUri: environment.auth0.redirectUri,
         scope: 'openid profile'
     });
 
