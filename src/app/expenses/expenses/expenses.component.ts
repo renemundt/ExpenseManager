@@ -14,6 +14,7 @@ import { ConfirmEvent } from '../../shared/confirm/confirm.models'
 })
 export class ExpensesComponent implements OnInit {
 
+    public loading = true
     public expenses: Expense[]
 
     constructor(
@@ -29,6 +30,7 @@ export class ExpensesComponent implements OnInit {
         return this.expensesService.getExpenses()
             .subscribe((expenses: Expense[]) => {
                 this.expenses = this.sortExpenses(expenses)
+                this.loading = false
             },
             error => {
                 console.error('em-error', error)

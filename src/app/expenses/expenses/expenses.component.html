@@ -1,10 +1,19 @@
 <div class="container-fluid">
-    <div *ngIf="expenses && expenses.length === 0">
+    <div *ngIf="loading">
+        <div class="page-header">
+            <h1>Latest expenses</h1>
+        </div>
+        <div class="col-md-12 text-center">
+            <h4><i class="fa fa-cog fa-spin fa-3x fa-fw"></i></h4>
+            <h4>Loading expenses...</h4>
+        </div>
+    </div>
+    <div *ngIf="!loading && expenses && expenses.length === 0">
         <div class="page-header">
             <h1>No expenses created yet</h1>
         </div>
     </div>
-    <div *ngIf="expenses && expenses.length > 0">
+    <div *ngIf="!loading && expenses && expenses.length > 0">
         <div class="page-header">
             <h1>Latest expenses</h1>
         </div>
