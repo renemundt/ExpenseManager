@@ -69,6 +69,8 @@ export class AuthService {
           throw new Error('Access token must exist to fetch profile');
         }
 
+        if (this.userProfile) {cb(null, this.userProfile)}
+
         const self = this
         this.auth0.client.userInfo(accessToken, (err, profile) => {
           if (profile) {

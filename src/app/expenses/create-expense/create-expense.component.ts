@@ -21,19 +21,19 @@ export class CreateExpenseComponent implements OnInit {
         private router: Router,
         private temperatureService: TemperatureService,
         private authenticationService: AuthService
-        ) { }
+    ) { }
 
     ngOnInit() {
         const now = new Date();
-        const userProfile = this.authenticationService.userProfile
-        this.expense.timeOfPurchase = new Date(now.getTime())
-        this.expense.profile = new Profile(userProfile.sub, userProfile.given_name)
+        this.authenticationService.getProfile((err, profile) => {
+            this.expense.timeOfPurchase = new Date(now.getTime())
+            this.expense.profile = new Profile(profile.sub, profile.given_name)
+        })
     }
 
     onSubmit(): void {
         this.expensesService.createExpense(this.expense)
-            .subscribe(
-            data => {
+            .subscribe(data => {
                 this.temperatureService.touchExpenses()
                 this.router.navigate(['expenses'])
             },
