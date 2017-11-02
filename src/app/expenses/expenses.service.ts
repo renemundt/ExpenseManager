@@ -11,7 +11,7 @@ import * as moment from 'moment'
 @Injectable()
 export class ExpensesService {
 
-    headers = new Headers({'Content-Type': 'application/json'})
+    headers = new Headers({'Content-Type': 'application/json',  Authorization: `Bearer ${this.getAccessToken()}` })
 
     constructor(private http: Http) { }
 
@@ -50,5 +50,10 @@ export class ExpensesService {
         const url = `${environment.url}expenses/${id}`;
         return this.http.delete(url, {headers: this.headers }).map(() => null);
     }
+
+    public getAccessToken(): string {
+        return localStorage.getItem('access_token')
+  }
+
 }
 

@@ -8,7 +8,7 @@ export const environment = {
     auth0: {
         clientID: 'V8Vq7mYp08JGKn5qDULusXPWHs7VfYz1',
         domain: 'renemundt.eu.auth0.com',
-        audience: 'https://renemundt.eu.auth0.com/userinfo',
+        audience: 'ExpenseManagerFrontends',
         redirectUri: 'https://expense-manager-frontend.herokuapp.com/callback',
     }
 }

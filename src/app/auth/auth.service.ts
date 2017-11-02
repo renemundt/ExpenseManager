@@ -14,7 +14,7 @@ export class AuthService {
         responseType: 'token id_token',
         audience: environment.auth0.audience,
         redirectUri: environment.auth0.redirectUri,
-        scope: 'openid profile'
+        scope: 'openid profile full_access'
     });
 
     userProfile: any
