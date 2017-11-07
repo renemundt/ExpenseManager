@@ -52,9 +52,9 @@ export class ExpensesComponent implements OnInit {
 
     private sortExpenses(expenses: Expense[]): Expense[] {
         return expenses.sort(function (a, b) {
-            a.created = new Date(a.created)
-            b.created = new Date(b.created)
-            return a.created > b.created ? -1 : a.created < b.created ? 1 : 0
+            a.timeOfPurchase = new Date(a.timeOfPurchase)
+            b.timeOfPurchase = new Date(b.timeOfPurchase)
+            return a.timeOfPurchase > b.timeOfPurchase ? -1 : a.timeOfPurchase < b.timeOfPurchase ? 1 : 0
         })
     }
 }

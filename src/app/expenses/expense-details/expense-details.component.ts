@@ -28,7 +28,7 @@ export class ExpenseDetailsComponent implements OnInit {
         this.expensesService.getExpense(id)
             .subscribe(
             expense => {
-                expense.created = new Date(expense.created)
+                expense.timeOfPurchase = new Date(expense.timeOfPurchase)
                 this.expense = expense
                 this.disableInput = true
             },
